@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#48bcb9</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="toolbarColor">#50cbc8</color>
+    <color name="white">#ffffff</color>
+    <color name="textColor">#92989e</color>
+    <color name="background">#f9f5f1</color>
+    <color name="hintColor">#cac7c4</color>
+    <color name="cardBgColor">#eeedef</color>
+    <color name="named_attend">#7fc68a</color>
+    <color name="named_absence">#e86a6b</color>
+    <color name="named_leave">#80dad8</color>
+</resources>

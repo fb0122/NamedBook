@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/toolbarColor"
+        android:elevation="5dp"
+        android:title="添加课程"
+        android:titleTextColor="@color/white"
+        >
+
+        <ImageView
+            android:id="@+id/add_course_done"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_add_course_done_x25"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:onClick="done"
+            />
+
+        </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="课程名称"
+            android:textSize="20dp"
+            android:textColor="@color/textColor"
+            />
+        <EditText
+            android:id="@+id/et_course"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_border"
+            android:textSize="20dp"
+            android:textColorHint="@color/toolbarColor"
+            android:layout_marginTop="10dp"
+            android:maxLines="1"
+            />
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="地点"
+                android:textSize="20dp"
+                android:textColor="@color/textColor"
+                />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <EditText
+                    android:id="@+id/et_campus"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/edit_border"
+                    android:layout_marginTop="10dp"
+                    android:hint="如:南湖"
+                    android:textColorHint="@color/hintColor"
+                    android:clickable="true"
+                    android:onClick="editTextClick"
+                    />
+
+                <TextView
+                    android:id="@+id/tvCampus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:text="校区"
+                    android:textSize="17dp"
+                    android:layout_toRightOf="@+id/et_campus"
+                    android:layout_marginLeft="3dp"
+                    />
+
+                <EditText
+                    android:layout_toRightOf="@+id/tvCampus"
+                    android:id="@+id/et_building"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/edit_border"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/textColor"
+                    android:hint="如:新一"
+                    android:textColorHint="@color/hintColor"
+                    android:clickable="true"
+                    android:onClick="editTextClick"
+                    />
+
+                <TextView
+                    android:id="@+id/tvBuilding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="教学楼"
+                    android:textSize="17dp"
+                    android:layout_toRightOf="@+id/et_building"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="3dp"
+                    />
+
+                <!--<EditText
+                    android:id="@+id/et_floor"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/edit_border"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tvBuilding"
+                    />
+
+                <TextView
+                    android:id="@+id/tvFloor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="层"
+                    android:textSize="17dp"
+                    android:layout_toRightOf="@+id/et_floor"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="3dp"
+                    />-->
+                <EditText
+                    android:id="@+id/et_classroom"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/edit_border"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/tvBuilding"
+                    android:hint="如:103"
+                    android:clickable="true"
+                    android:onClick="editTextClick"
+                    android:textColorHint="@color/hintColor"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_toRightOf="@+id/et_classroom"
+                    android:text="室"
+                    android:textSize="17dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="3dp"
+                    />
+
+            </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="时间"
+                android:textSize="20dp"
+                android:textColor="@color/textColor"
+                />
+            <Spinner
+                android:id="@+id/sp_course_time"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/spinner_border"
+                android:entries="@array/course_time"
+                android:prompt="@string/sp_time"
+                android:theme="@android:style/Theme.Holo.Light"
+                >
+
+            </Spinner>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="学生人数"
+                android:textSize="20dp"
+                android:textColor="@color/textColor"
+                />
+            <EditText
+                android:id="@+id/et_student"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_border"
+                android:textSize="20dp"
+                android:textColorHint="@color/toolbarColor"
+                android:layout_marginTop="10dp"
+                android:maxLines="1"
+                />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+</LinearLayout>
+</LinearLayout>

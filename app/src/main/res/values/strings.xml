@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">点到本</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="draw_open">open</string>
+    <string name="draw_close">close</string>
+    <string name="sp_campus">南湖</string>
+    <string name="sp_time">第一大节</string>
+
+    <string-array name="weekdays">
+        <item>星期一</item>
+        <item>星期二</item>
+        <item>星期三</item>
+        <item>星期四</item>
+        <item>星期五</item>
+        <item>星期六</item>
+        <item>星期日</item>
+    </string-array>
+    
+
+</resources>
