@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.fb0122.namedbook.NameBook_DB.DbNameBook;
+import com.example.fb0122.namedbook.utils.GetTime;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,7 @@ public class AtyNamed extends AppCompatActivity {
     SQLiteDatabase dbRead;
     LinearLayoutManager layoutManager;
     static int firstPosition;
+    private GetTime getTime = new GetTime();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,9 +78,14 @@ public class AtyNamed extends AppCompatActivity {
     }
 
     public ArrayList<String> getData(Cursor c_stu){
+        String course = "";
+        String time = getTime.getCurTime();
+        String week = getIntent().getStringExtra("week");
+        time = time.split("-")[0] + "-" + week;
+        course = getIntent().getStringExtra("course");
         ArrayList<String> name_list = new ArrayList<>();
         dbRead = dbNameBook.getReadableDatabase();
-         c_stu = dbRead.rawQuery(" select name from " + "student",null);
+         c_stu = dbRead.rawQuery(" select name from student where course = ? and time_week = ?",new String[]{course,time});
         if (c_stu.moveToFirst()){
             do {
 

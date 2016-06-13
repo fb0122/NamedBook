@@ -164,11 +164,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
         dbWrite.update("student",cv,"name = ?",new String[]{viewHolder.tv_name.getText().toString()});
         Toast.makeText(context,"ok",Toast.LENGTH_SHORT).show();
-        if (tv != null) {
-            map = getStuState(viewHolder.tv_name.getText().toString());
-            tv.setText("本学期缺勤" + map.get("absence") + "次，" + "出勤" + map.get("attend") + "次");
-            Log.e(TAG,"缺勤 " + map.get("absence") + "出勤" + map.get("attend"));
-        }
+        notifyItemChanged(Math.abs(position - firstPosition));
 //        map.clear();
     }
 
@@ -331,20 +327,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         SQLiteDatabase dbRead = dbNameBook.getReadableDatabase();
         String s = getTime.getCurTime();
         Cursor attendCur = dbRead.rawQuery(" select attend from student where time_week = ? and name = ?",new String[]{s,name});
-        map.put("attend",count(attendCur));
+        map.put("attend",count(attendCur,"attend"));
         Cursor absenceCur = dbRead.rawQuery(" select absence from student where time_week = ? and name = ?",new String[]{s,name});
-        map.put("absence",count(absenceCur));
+        map.put("absence",count(absenceCur,"absence"));
         Cursor lateCur = dbRead.rawQuery(" select late from student where time_week = ? and name = ?",new String[]{s,name});
-        map.put("late",count(lateCur));
+        map.put("late",count(lateCur,"late"));
         return map;
     }
 
-    private int count(Cursor c){
+    private int count(Cursor c,String columnName){
         int count = 0;
         if (c.moveToFirst()){
             for (int i = 0;i<c.getCount();i++){
-                Log.e(TAG,"c.getString" + c.getString(i));
-                if (Integer.parseInt(c.getString(i)) == 1){
+                Log.e(TAG,"c.getString" + c.getString(c.getColumnIndex(columnName)));
+                if (Integer.parseInt(c.getString(c.getColumnIndex(columnName))) == 1){
                     Log.e(TAG,"count++");
                     count++;
                 }

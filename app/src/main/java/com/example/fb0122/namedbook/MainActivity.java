@@ -58,9 +58,12 @@ public class MainActivity extends AppCompatActivity {
             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(MenuItem item) {
-
-                    drawerLayout.closeDrawers();
-
+                    switch (item.getItemId()){
+                        case R.id.stuInfo:
+                            Intent i = new Intent(MainActivity.this,StuInfo.class);
+                            startActivity(i);
+                            break;
+                    }
                     return true;
                 }
             });
@@ -78,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
                                 "您点击的课程是：" + classInfo.getClassname(),
                                 Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(MainActivity.this,AtyNamed.class);
+                        Bundle b = new Bundle();
+                        b.putString("course",classInfo.getClassname());
+                        b.putString("week",String.valueOf(classInfo.getWeekday()));
+                        i.putExtras(b);
                         startActivity(i);
 
                     }

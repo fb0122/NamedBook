@@ -36,4 +36,12 @@
         <item>第三大节</item>
         <item>第四大节</item>
     </string-array>
+
+    <string-array name="query_suggestion">
+        <item>张三</item>
+        <item>李四</item>
+        <item>王麻子</item>
+        <item>赵六</item>
+    </string-array>
+
 </resources>

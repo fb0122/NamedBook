@@ -2,23 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
+    <group android:id="@+id/gp1">
     <item
-        android:title="菜单1"
+        android:id="@+id/stuInfo"
+        android:title="学生到课情况查询"
         android:icon="@drawable/ic_supervisor_account_black_24dp"
         />
+    </group>
 
+    <group android:id="@+id/gp3">
+        <item
+            android:title="个人设置"
+            android:icon="@drawable/ic_supervisor_account_black_24dp"
+            />
+    </group>
+    <group android:id="@+id/gp2">
     <item
-        android:title="菜单1"
-        android:icon="@android:drawable/ic_lock_idle_alarm"
+        android:title="关于我们"
+        android:icon="@drawable/ic_supervisor_account_black_24dp"
         />
-    <item
-        android:title="菜单1"
-        android:icon="@android:drawable/ic_lock_idle_alarm"
-        />
-    <item
-        android:title="菜单1"
-        android:icon="@android:drawable/ic_lock_idle_alarm"
-        />
+    </group>
     <item
         android:title="菜单1"
         android:icon="@android:drawable/ic_lock_idle_alarm"
