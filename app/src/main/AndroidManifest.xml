@@ -26,6 +26,7 @@
         <activity android:name=".StuInfo"
             android:theme="@style/AppTheme.Base"
             />
+        <activity android:name=".StuDetail"/>
     </application>
 
 </manifest>

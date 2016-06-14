@@ -1,6 +1,7 @@
 package com.example.fb0122.namedbook;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.PorterDuff;
@@ -11,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.fb0122.namedbook.NameBook_DB.DbNameBook;
@@ -53,6 +56,18 @@ public class StuInfo extends AppCompatActivity {
         if(toolbar.getNavigationIcon() != null){
             toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         }
+        list = getData();
+
+        lv_info.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle b = new Bundle();
+                Intent i = new Intent(StuInfo.this,StuDetail.class);
+                b.putString("stuname",list.get(position));
+                i.putExtras(b);
+                startActivity(i);
+            }
+        });
 
         searchView = (MaterialSearchView)findViewById(R.id.searchView);
         searchView.setVoiceSearch(false);
@@ -127,5 +142,7 @@ public class StuInfo extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+
 }
 

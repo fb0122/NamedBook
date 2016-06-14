@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/toolbarColor"
+        android:elevation="5dp"
+        android:title="详细统计"
+        android:gravity="center"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        >
+
+        <com.example.fb0122.namedbook.NavCircleHead
+            android:id="@+id/detail_head"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/head"
+            />
+        <TextView
+            android:id="@+id/detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="张三"
+            android:textSize="25dp"
+            android:textColor="@color/textColor"
+            android:layout_marginTop="20dp"
+            />
+
+    </LinearLayout>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardElevation="3dp"
+        android:background="@color/cardBgColor"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:background="@drawable/detail_tv_border"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="本学期出勤"
+                android:layout_marginTop="20dp"
+                />
+            <TextView
+                android:id="@+id/detail_attend_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="25dp"
+                android:layout_marginTop="10dp"
+                />
+            <TextView
+                android:text="次"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                />
+
+            <com.example.fb0122.namedbook.circlePrograssBar.TasksCompletedView
+                android:id="@+id/atttend_progress"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:radius="40dp"
+                app:strokeWidth="5dp"
+                app:ringColor="@color/toolbarColor"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:background="@drawable/detail_tv_border"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="本学期请假"
+                android:layout_marginTop="20dp"
+                />
+            <TextView
+                android:id="@+id/detail_leave_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="25dp"
+                android:layout_marginTop="10dp"
+                />
+            <TextView
+                android:text="次"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                />
+            <com.example.fb0122.namedbook.circlePrograssBar.TasksCompletedView
+                android:id="@+id/leave_progress"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:radius="40dp"
+                app:strokeWidth="5dp"
+                app:ringColor="@color/toolbarColor"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="本学期缺勤"
+                android:layout_marginTop="20dp"
+                />
+            <TextView
+                android:id="@+id/detail_absence_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="25dp"
+                android:layout_marginTop="10dp"
+                />
+            <TextView
+                android:text="次"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                />
+
+            <com.example.fb0122.namedbook.circlePrograssBar.TasksCompletedView
+                android:id="@+id/absence_progress"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:radius="40dp"
+                app:strokeWidth="5dp"
+                app:ringColor="@color/toolbarColor"
+                />
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

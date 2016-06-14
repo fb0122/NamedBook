@@ -12,4 +12,5 @@
     <color name="named_attend">#7fc68a</color>
     <color name="named_absence">#e86a6b</color>
     <color name="named_leave">#80dad8</color>
+    <color name="cardColor">#e0e4e4</color>
 </resources>
