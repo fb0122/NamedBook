@@ -58,4 +58,11 @@
         <item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
         <item name="windowActionBar">false</item>
     </style>
+
+    <style name="dialog_translucent" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/toolbarColor</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    </style>
 </resources>

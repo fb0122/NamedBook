@@ -27,6 +27,7 @@ public class DbNameBook extends SQLiteOpenHelper{
             + "place text, "
             + "time_week text, "
             + "time_lesson text, "
+            + "date text, "
             + "student_count integer) ";
     private static String CREATE_STU = "create table " + student_table_name + " ("
             + "id integer primary key autoincrement, "
@@ -36,6 +37,7 @@ public class DbNameBook extends SQLiteOpenHelper{
             + "late text default '0', "
             + "course text, "
             + "time_week, "
+            + "date text, "
             + "time_lesson) "
             ;
 

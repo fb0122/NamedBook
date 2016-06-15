@@ -43,5 +43,16 @@
         <item>王麻子</item>
         <item>赵六</item>
     </string-array>
+    <string-array name="select_week">
+        <item>周一</item>
+        <item>周二</item>
+        <item>周三</item>
+        <item>周四</item>
+        <item>周五</item>
+    </string-array>
+    <string-array name="week_times">
+        <item>单周</item>
+        <item>双周</item>
+    </string-array>
 
 </resources>

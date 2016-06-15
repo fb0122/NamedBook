@@ -40,7 +40,7 @@ public class AddCourse extends AppCompatActivity implements Spinner.OnItemSelect
 
     private final static String TAG = "AddCourse";
 
-    Spinner sp_course_time;
+    Spinner sp_course_time,sp_week,week_times;
     private static Context context;
     static DbNameBook dbNameBook;
     EditText et_student, et_course, et_campus, et_building, et_floor, et_classroom;
@@ -75,6 +75,8 @@ public class AddCourse extends AppCompatActivity implements Spinner.OnItemSelect
         et_building = (EditText) findViewById(R.id.et_building);
         et_classroom = (EditText) findViewById(R.id.et_classroom);
         sp_course_time = (Spinner) findViewById(R.id.sp_course_time);
+        sp_week = (Spinner)findViewById((R.id.sp_week));
+        week_times = (Spinner)findViewById(R.id.week_time);
     }
 
     @Override
@@ -177,10 +179,11 @@ public class AddCourse extends AppCompatActivity implements Spinner.OnItemSelect
             course_cv.put("place",dealPlace());
             course_cv.put("time_lesson", sp_course_time.getSelectedItem().toString());
             course_cv.put("student_count", Integer.parseInt(et_student.getText().toString()));
-            course_cv.put("time_week", getTime.getCurTime());
+            course_cv.put("time_week",sp_week.getSelectedItem().toString());
+            course_cv.put("date", getTime.getCurTime());
             dbWriter.insert(dbNameBook.getCourseTablename(),null,course_cv);
             Toast.makeText(context,"课程已添加",Toast.LENGTH_SHORT).show();
-            AnalogData analogData = new AnalogData(context,dbNameBook,stu_cv,et_course.getText().toString(),getTime(),sp_course_time.getSelectedItem().toString(),Integer.parseInt(et_student.getText().toString()));
+            AnalogData analogData = new AnalogData(context,dbNameBook,stu_cv,et_course.getText().toString(),sp_week.getSelectedItem().toString(),sp_course_time.getSelectedItem().toString(),Integer.parseInt(et_student.getText().toString()),getTime.getCurTime());
             analogData.addData();
             Log.e(TAG, "create database successed and insert data");
         }

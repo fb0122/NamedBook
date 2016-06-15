@@ -27,11 +27,11 @@ public class ScheduleView extends View implements OnTouchListener {
     private int startX = 0;//画布的原点X（所有的画图操作，都是基于这个原点的，touch中只要修改这个值）
     private int startY = 0;//画布的原点Y（所有的画图操作，都是基于这个原点的，touch中只要修改这个值）
     private static final int sidewidte = 50;//左边，上面bar的宽度
-    private static final int eachBoxH = 120;//每个格子的高度
+    private static final int eachBoxH = 200;//每个格子的高度
     private static int eachBoxW = 120;//每个格子的宽度，后面根据屏幕对它做了均分
     private int focusX = -1;//当前手指焦点的位置坐标
     private int focusY = -1;//当前手指焦点的位置坐标
-    private static int classTotal = 12;//左边栏总格子数
+    private static int classTotal = 10;//左边栏总格子数
     private static int dayTotal = 7;//顶部栏总共格子数
     private String[] weekdays;//星期
     private boolean isMove = false; // 判断是否移动
@@ -111,7 +111,7 @@ public class ScheduleView extends View implements OnTouchListener {
      */
     private void printContent(Canvas canvas) {
         if (classList != null && classList.size() > 0) {
-            mPaint.setTextSize(25);
+            mPaint.setTextSize(35);
             ClassInfo classInfo;
             for (int i = 0; i < classList.size(); i++) {
                 classInfo = classList.get(i);
@@ -138,7 +138,7 @@ public class ScheduleView extends View implements OnTouchListener {
                 Rect textRect1 = new Rect();
                 mPaint.getTextBounds(className, 0, className.length(),
                         textRect1);
-                mPaint.setTextSize(28.0f);
+                mPaint.setTextSize(35.0f);
                 int th = textRect1.bottom - textRect1.top;
                 int tw = textRect1.right - textRect1.left;
                 //计算行数-

@@ -55,13 +55,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
     private static int isScroll;
     private GetTime getTime = new GetTime();
     private static TextView tv;
+    private static String course;
 
-    public MyAdapter(Context context, DbNameBook dbNameBook, ArrayList<String> list, RecyclerView lv_student,LinearLayoutManager layoutManager){
+    public MyAdapter(Context context, DbNameBook dbNameBook, ArrayList<String> list, RecyclerView lv_student,LinearLayoutManager layoutManager,String course){
         this.context = context;
         this.dbNameBook = dbNameBook;
         this.list = list;
         this.lv_student = lv_student;
         this.layoutManager = layoutManager;
+        this.course = course;
         for (String s : list){
             vector.add(State.NORMAL);
         }
@@ -98,25 +100,36 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
             holder.btn_leave.setTag(position);
             holder.btn_leave.setOnClickListener(this);
 //        }
-        Log.e(TAG,"vector" + vector.get(position));
         if (vector.get(position) !=null ){
             switch (vector.get(position)){
                 case ABSENCE:
                     if (colorChange) {
                         holder.btn_absence.setBackgroundColor(context.getResources().getColor(R.color.named_absence));
                         holder.btn_absence.setTextColor(context.getResources().getColor(R.color.white));
+                        holder.btn_attend.setBackground(context.getResources().getDrawable(R.drawable.named_click_tv));
+                        holder.btn_attend.setTextColor(context.getResources().getColor(R.color.textColor));
+                        holder.btn_leave.setBackground(context.getResources().getDrawable(R.drawable.named_click_tv));
+                        holder.btn_leave.setTextColor(context.getResources().getColor(R.color.textColor));
                     }
                     break;
                 case ATTEND:
                     if (colorChange) {
                         holder.btn_attend.setBackgroundColor(context.getResources().getColor(R.color.named_attend));
                         holder.btn_attend.setTextColor(context.getResources().getColor(R.color.white));
+                        holder.btn_absence.setBackground(context.getResources().getDrawable(R.drawable.named_click_tv));
+                        holder.btn_absence.setTextColor(context.getResources().getColor(R.color.textColor));
+                        holder.btn_leave.setBackground(context.getResources().getDrawable(R.drawable.named_click_tv));
+                        holder.btn_leave.setTextColor(context.getResources().getColor(R.color.textColor));
                     }
                     break;
                 case LEAVE:
                     if (colorChange) {
                         holder.btn_leave.setBackgroundColor(context.getResources().getColor(R.color.named_leave));
                         holder.btn_leave.setTextColor(context.getResources().getColor(R.color.white));
+                        holder.btn_attend.setBackground(context.getResources().getDrawable(R.drawable.named_click_tv));
+                        holder.btn_attend.setTextColor(context.getResources().getColor(R.color.textColor));
+                        holder.btn_absence.setBackground(context.getResources().getDrawable(R.drawable.named_click_tv));
+                        holder.btn_absence.setTextColor(context.getResources().getColor(R.color.textColor));
                     }
                     break;
                 case NORMAL:
@@ -140,7 +153,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
      */
 
     public void setStuState(int position,TextView tv){
-        HashMap<String,Integer> map = new HashMap<>();
         ContentValues cv = new ContentValues();
         dbWrite = dbNameBook.getWritableDatabase();
         firstPosition = layoutManager.findFirstVisibleItemPosition();
@@ -164,7 +176,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
         dbWrite.update("student",cv,"name = ?",new String[]{viewHolder.tv_name.getText().toString()});
         Toast.makeText(context,"ok",Toast.LENGTH_SHORT).show();
-        notifyItemChanged(Math.abs(position - firstPosition));
+        notifyItemChanged(Math.abs(position));
 //        map.clear();
     }
 
@@ -172,23 +184,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
 
         firstPosition = layoutManager.findFirstVisibleItemPosition();
-        Log.e(TAG,"getChanged position is " + position);
-        Log.e(TAG,"firstPosition " + firstPosition);
-        Log.e(TAG,"lastPosition" + layoutManager.findLastVisibleItemPosition());
-//        Log.e(TAG,"lv_student.getChildAtView : " + lv_student.getChildAt(position));
-//        for (int i = 0;i < layoutManager.findLastVisibleItemPosition() - layoutManager.findFirstVisibleItemPosition(); i++) {
-//            Handler handler = new Handler();
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public synchronized void run() {
-//                    viewHolder = (ViewHolder) lv_student.getChildViewHolder(lv_student.getChildAt(position - firstPosition));
-//                }
-//            },500);
             viewHolder = (ViewHolder) lv_student.getChildViewHolder(lv_student.getChildAt(Math.abs(position - firstPosition)));
 //            viewHolder = (ViewHolder)lv_student.findViewHolderForAdapterPosition(position);
-            Log.e(TAG,"viewHolder: " + viewHolder);
             if (viewHolder == null){
-                Log.e(TAG,"the view is null");
             }else {
                 if (colorChange) {
                     switch (rId) {
@@ -227,6 +225,30 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
     }
 
+    public void clearColor(int position, int textRes, int rId,Drawable drawable){
+
+        firstPosition = layoutManager.findFirstVisibleItemPosition();
+        Log.e(TAG,"getChanged position is " + position);
+        Log.e(TAG,"firstPosition " + firstPosition);
+        viewHolder = (ViewHolder) lv_student.getChildViewHolder(lv_student.getChildAt(Math.abs(position - firstPosition)));
+        switch (rId){
+            case R.id.btn_attend:
+                viewHolder.btn_attend.setTextColor(textRes);
+                viewHolder.btn_attend.setBackground(drawable);
+                break;
+            case R.id.btn_absence:
+                viewHolder.btn_absence.setTextColor(textRes);
+                viewHolder.btn_absence.setBackground(drawable);
+                break;
+            case R.id.btn_leave:
+                viewHolder.btn_leave.setTextColor(textRes);
+                viewHolder.btn_leave.setBackground(drawable);
+                break;
+        }
+        lv_student.invalidate();
+
+    }
+
     @Override
     public int getItemCount() {
         return list.size();
@@ -239,6 +261,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         Log.e(TAG,"click position is: " + position);
         switch (v.getId()){
             case R.id.btn_absence:
+                STU_ATTEND = false;
+                STU_LEAVE = false;
+                clearColor(position,context.getResources().getColor(R.color.textColor),R.id.btn_leave,context.getResources().getDrawable(R.drawable.named_click_tv));
+                clearColor(position,context.getResources().getColor(R.color.textColor),R.id.btn_attend,context.getResources().getDrawable(R.drawable.named_click_tv));
                 //通过判断button内字体的颜色判断点击选中或者取消
                 if ((Boolean)(((Button)v).getTextColors().getDefaultColor() == context.getResources().getColor(R.color.textColor))) {
                     colorChange = true;
@@ -251,8 +277,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                     STU_ABSENCE = false;
                     vector.add(position,State.NORMAL);
                 }
+
                 break;
             case R.id.btn_attend:
+                STU_LEAVE = false;
+                STU_ABSENCE = false;
+                clearColor(position,context.getResources().getColor(R.color.textColor),R.id.btn_leave,context.getResources().getDrawable(R.drawable.named_click_tv));
+                clearColor(position,context.getResources().getColor(R.color.textColor),R.id.btn_absence,context.getResources().getDrawable(R.drawable.named_click_tv));
                 if ((Boolean)(((Button)v).getTextColors().getDefaultColor() == context.getResources().getColor(R.color.textColor))) {
                     colorChange = true;
                     getChange(position,context.getResources().getColor(R.color.white),v.getId(),context.getResources().getColor(R.color.named_attend),context.getResources().getDrawable(R.drawable.named_click_tv));
@@ -264,8 +295,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                     STU_ATTEND = false;
                     vector.add(position,State.NORMAL);
                 }
+
                 break;
             case R.id.btn_leave:
+                STU_ABSENCE = false;
+                STU_ATTEND = false;
+                clearColor(position,context.getResources().getColor(R.color.textColor),R.id.btn_attend,context.getResources().getDrawable(R.drawable.named_click_tv));
+                clearColor(position,context.getResources().getColor(R.color.textColor),R.id.btn_absence,context.getResources().getDrawable(R.drawable.named_click_tv));
                 if ((Boolean)(((Button)v).getTextColors().getDefaultColor() == context.getResources().getColor(R.color.textColor))) {
                     colorChange = true;
                     getChange(position,context.getResources().getColor(R.color.white),v.getId(),context.getResources().getColor(R.color.named_leave),context.getResources().getDrawable(R.drawable.named_click_tv));
@@ -277,6 +313,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                     STU_LEAVE = false;
                     vector.add(position,State.NORMAL);
                 }
+
                 break;
         }
         Log.d(TAG, "default" + v.getTag() + "");
@@ -326,22 +363,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         HashMap<String,Integer> map = new HashMap<>();
         SQLiteDatabase dbRead = dbNameBook.getReadableDatabase();
         String s = getTime.getCurTime();
-        Cursor attendCur = dbRead.rawQuery(" select attend from student where time_week = ? and name = ?",new String[]{s,name});
+        Cursor attendCur = dbRead.rawQuery(" select attend from student where course = ? and name = ?",new String[]{course,name});
         map.put("attend",count(attendCur,"attend"));
-        Cursor absenceCur = dbRead.rawQuery(" select absence from student where time_week = ? and name = ?",new String[]{s,name});
+        Cursor absenceCur = dbRead.rawQuery(" select absence from student where course = ? and name = ?",new String[]{course,name});
         map.put("absence",count(absenceCur,"absence"));
-        Cursor lateCur = dbRead.rawQuery(" select late from student where time_week = ? and name = ?",new String[]{s,name});
+        Cursor lateCur = dbRead.rawQuery(" select late from student where course = ? and name = ?",new String[]{course,name});
         map.put("late",count(lateCur,"late"));
         return map;
     }
 
+    //统计学生状态
     private int count(Cursor c,String columnName){
         int count = 0;
         if (c.moveToFirst()){
             for (int i = 0;i<c.getCount();i++){
-                Log.e(TAG,"c.getString" + c.getString(c.getColumnIndex(columnName)));
                 if (Integer.parseInt(c.getString(c.getColumnIndex(columnName))) == 1){
-                    Log.e(TAG,"count++");
                     count++;
                 }
             }

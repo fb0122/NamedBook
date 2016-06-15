@@ -49,6 +49,7 @@ public class AtyNamed extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.namedToolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        toolbar.setTitle("点名");
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -61,7 +62,7 @@ public class AtyNamed extends AppCompatActivity {
         c_course = dbNameBook.getCourseCursor();
         c_stu = dbNameBook.getStuCursor();
         list = getData(c_stu);
-        myAdapter = new MyAdapter(context,dbNameBook,list,lv_student,layoutManager);
+        myAdapter = new MyAdapter(context,dbNameBook,list,lv_student,layoutManager,getIntent().getStringExtra("course"));
         lv_student.setAdapter(myAdapter);
         lv_student.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -79,13 +80,11 @@ public class AtyNamed extends AppCompatActivity {
 
     public ArrayList<String> getData(Cursor c_stu){
         String course = "";
-        String time = getTime.getCurTime();
-        String week = getIntent().getStringExtra("week");
-        time = time.split("-")[0] + "-" + week;
+        String time_lesson = getIntent().getStringExtra("time_lesson");
         course = getIntent().getStringExtra("course");
         ArrayList<String> name_list = new ArrayList<>();
         dbRead = dbNameBook.getReadableDatabase();
-         c_stu = dbRead.rawQuery(" select name from student where course = ? and time_week = ?",new String[]{course,time});
+         c_stu = dbRead.rawQuery(" select name from student where course = ?",new String[]{course});
         if (c_stu.moveToFirst()){
             do {
 

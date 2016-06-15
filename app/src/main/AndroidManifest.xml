@@ -27,6 +27,9 @@
             android:theme="@style/AppTheme.Base"
             />
         <activity android:name=".StuDetail"/>
+        <activity android:name=".AtyClassInfo"/>
+        <activity android:name=".Login"/>
+        <activity android:name=".Login_Dialog" android:theme="@style/dialog_translucent"/>
     </application>
 
 </manifest>

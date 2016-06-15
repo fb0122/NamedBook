@@ -6,6 +6,8 @@
     <string name="draw_close">close</string>
     <string name="sp_campus">南湖</string>
     <string name="sp_time">第一大节</string>
+    <string name="sp_week">周一</string>
+    <string name="week_time">单周</string>
 
     <string-array name="weekdays">
         <item>星期一</item>

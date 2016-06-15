@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(MenuItem item) {
                     switch (item.getItemId()){
                         case R.id.stuInfo:
-                            Intent i = new Intent(MainActivity.this,StuInfo.class);
+                            Intent i = new Intent(MainActivity.this,AtyClassInfo.class);
                             startActivity(i);
                             break;
                     }
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent i = new Intent(MainActivity.this,AtyNamed.class);
                         Bundle b = new Bundle();
                         b.putString("course",classInfo.getClassname());
-                        b.putString("week",String.valueOf(classInfo.getWeekday()));
+                        b.putString("time_lesson",String.valueOf(classInfo.getTime_lesson()));
                         i.putExtras(b);
                         startActivity(i);
 
@@ -109,12 +109,34 @@ public class MainActivity extends AppCompatActivity {
         }
         return from;
     }
+    private int setWeek(String week){
+        int w = 0;
+        switch (week){
+            case "周一":
+                w = 1;
+                break;
+            case "周二":
+                w = 2;
+                break;
+            case "周三":
+                w = 3;
+                break;
+            case "周四":
+                w = 4;
+                break;
+            case "周五":
+                w = 5;
+                break;
+
+        }
+        return w;
+    }
 
     private void getClassData() {
         classList = new ArrayList<ClassInfo>();
         SQLiteDatabase dbRead = dbNameBook.getReadableDatabase();
         String time = getTime.getCurTime();
-        Cursor lessonCur = dbRead.rawQuery("select * from course where time_week = ?" ,new String[]{time});
+        Cursor lessonCur = dbRead.rawQuery("select * from course " ,null);
 //        Cursor timeCur = dbRead.rawQuery("select time_lesson from course where time_week = ?",new String[]{time});
         if (lessonCur.moveToFirst()){
             do {
@@ -124,7 +146,9 @@ public class MainActivity extends AppCompatActivity {
                 classInfo.setFromClassNum(setClass(lessonCur.getString(lessonCur.getColumnIndex("time_lesson"))));
                 classInfo.setClassNumLen(2);
                 classInfo.setClassRoom(lessonCur.getString(lessonCur.getColumnIndex("place")));
-                classInfo.setWeekday(Integer.parseInt((lessonCur.getString(lessonCur.getColumnIndex("time_week"))).split("-")[1]));
+                classInfo.setWeekday(setWeek((lessonCur.getString(lessonCur.getColumnIndex("time_week")))));
+                Log.e(TAG,"ssssss" + setWeek((lessonCur.getString(lessonCur.getColumnIndex("time_week")))));
+                classInfo.setTime_lesson(lessonCur.getString(lessonCur.getColumnIndex("time_lesson")));
                 classList.add(classInfo);
             }while (lessonCur.moveToNext());
         }
@@ -146,6 +170,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG,"this is ItemSeclected");
                 Intent i = new Intent(this,AddCourse.class);
                 startActivityForResult(i,0);
+                break;
+            case R.id.action_get_course:
+                Intent intent  = new Intent(MainActivity.this,Login.class);
+                startActivity(intent);
+                Toast.makeText(context,"登录以后就可以使用该功能",Toast.LENGTH_SHORT).show();
                 break;
         }
 

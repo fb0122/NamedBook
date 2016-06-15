@@ -1,5 +1,7 @@
 package com.example.fb0122.namedbook;
 
+import android.provider.ContactsContract;
+
 /**
  * Created by fb0122 on 2016/5/17.
  */
@@ -16,6 +18,7 @@ public class ClassInfo {
         private int classNumLen;
         private int weekday;
         private String classRoom;
+        private String time_lesson;
 
         public void setPoint(int fromX, int fromY, int toX, int toY) {
             this.fromX = fromX;
@@ -104,5 +107,12 @@ public class ClassInfo {
             this.classRoom = classRoom;
         }
 
+    public void setTime_lesson(String time_lesson) {
+        this.time_lesson = time_lesson;
     }
+
+    public String getTime_lesson() {
+        return time_lesson;
+    }
+}
 

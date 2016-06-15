@@ -22,13 +22,5 @@
         android:icon="@drawable/ic_supervisor_account_black_24dp"
         />
     </group>
-    <item
-        android:title="菜单1"
-        android:icon="@android:drawable/ic_lock_idle_alarm"
-        />
-    <item
-        android:title="菜单1"
-        android:icon="@android:drawable/ic_lock_idle_alarm"
-        />
 
 </menu>

@@ -105,7 +105,8 @@ public class StuInfo extends AppCompatActivity {
         String name = "";
         ArrayList<String> stu_list = new ArrayList<>();
         dbRead = dbNameBook.getReadableDatabase();
-        Cursor c = dbRead.rawQuery("select * from student ",null);
+        Cursor c = dbRead.rawQuery("select * from student where course = ?",new String[]{getIntent().getStringExtra("course")
+        });
         if (c.moveToFirst()){
             do {
                 stu_list.add(c.getString(c.getColumnIndex("name")));

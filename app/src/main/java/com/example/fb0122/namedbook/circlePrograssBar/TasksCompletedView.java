@@ -100,7 +100,7 @@ protected void onDraw(Canvas canvas) {
 
     canvas.drawCircle(mXCenter, mYCenter, mRadius, mCirclePaint);
 
-    if (mProgress > 0) {
+    if (mProgress >= 0) {
         RectF oval = new RectF();
         oval.left = (mXCenter - mRingRadius);
         oval.top = (mYCenter - mRingRadius);

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+        <TextView
+            android:id="@+id/classinfo_name"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="30dp"
+            android:text="电子商务移动开发技术"
+            android:textSize="20dp"
+            android:textColor="@color/textColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/classinfo_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上课时间:  周四"
+            android:layout_marginLeft="30dp"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/textColor"
+            />
+
+            <TextView
+                android:id="@+id/classinfo_stucount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上课人数: 20"
+                android:textSize="15dp"
+                android:layout_toRightOf="@+id/classinfo_week"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:layout_marginRight="30dp"
+                android:textColor="@color/textColor"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
